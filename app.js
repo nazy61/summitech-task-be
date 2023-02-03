@@ -17,6 +17,7 @@ app.use(urlencoded({ extended: false }));
 
 // all routes
 app.use("/v1", apiRoutes.userRoutes);
+app.use("/v1", apiRoutes.productRoutes);
 
 app.listen(port, () => {
   console.log(`Summitech app listening on port ${port}`);
