@@ -90,6 +90,12 @@ module.exports.create_product = async (req, res) => {
       data: product,
     });
   } catch (error) {
+    if (error.keyValue.name != null && error.code === 11000) {
+      return res.status(400).json({
+        success: false,
+        message: "Product Name already exists!",
+      });
+    }
     return res.status(400).json({
       success: false,
       message: error.message,
@@ -145,6 +151,12 @@ module.exports.update_product = async (req, res) => {
       data: product,
     });
   } catch (error) {
+    if (error.keyValue.name != null && error.code === 11000) {
+      return res.status(400).json({
+        success: false,
+        message: "Product Name already exists!",
+      });
+    }
     return res.status(400).json({
       success: false,
       message: error.message,

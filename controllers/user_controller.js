@@ -129,6 +129,12 @@ module.exports.create_user = async (req, res) => {
       data: user,
     });
   } catch (error) {
+    if (error.keyValue.email != null && error.code === 11000) {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists!",
+      });
+    }
     return res.status(400).json({
       success: false,
       message: error.message,
